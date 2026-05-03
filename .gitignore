@@ -1,0 +1,12 @@
+# ESPHome
+.esphome/
+secrets.yaml
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+__pycache__/
+*.pyc
