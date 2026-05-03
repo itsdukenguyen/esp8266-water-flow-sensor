@@ -13,6 +13,8 @@ wifi:
   min_auth_mode: WPA2
 
 logger:
+  # Increase to DEBUG temporarily if troubleshooting pulses
+  # level: DEBUG
 
 api:
   encryption:
@@ -27,6 +29,9 @@ time:
     id: homeassistant_time
 
 sensor:
+  # ─────────────────────────────────────────────────────────────
+  # Raw Pulse Meter - Counts pulses from Hall effect sensor
+  # ─────────────────────────────────────────────────────────────
   - platform: pulse_meter
     id: water_flow_pulses_meter
     pin:
@@ -37,11 +42,15 @@ sensor:
       inverted: false
     name: "Water Flow Pulses (meter)"
     unit_of_measurement: "pulses/min"
-    internal_filter: 50ms
-    timeout: 5min
+    internal_filter: 50ms          # Debounce - prevents noise/false counts
+    timeout: 5min                  # Consider flow stopped after 5 min no pulses
     filters:
       - multiply: 1.0
 
+  # ─────────────────────────────────────────────────────────────
+  # Flow Rate Template - Main calculated sensor (gal/min)
+  # Uses calibrated formula from bucket tests
+  # ─────────────────────────────────────────────────────────────
   - platform: template
     id: water_flow_rate
     name: "Water Flow Rate"
@@ -50,26 +59,34 @@ sensor:
     accuracy_decimals: 2
     update_interval: 5s
     filters:
-      - delta: 0.01
+      - delta: 0.01                # Smooth small jumps
       - clamp:
           min_value: 0
-          max_value: 50
+          max_value: 50            # Sensor max ~13 gal/min
     lambda: |-
       float pulses_min = id(water_flow_pulses_meter).state;
       if (pulses_min <= 0.0 || isnan(pulses_min)) return 0.0;
-      float hz = pulses_min / 60.0;
-      float l_min = (hz + 4.0) / 8.0;   # Calibrated for this sensor
-      float gal_min = l_min / 3.78541;
+
+      float hz = pulses_min / 60.0;                    # Convert to Hertz
+      float l_min = (hz + 4.0) / 8.0;                  # Calibrated formula: Q(L/min) = (Hz + 4)/8
+      float gal_min = l_min / 3.78541;                 # Convert L to US gallons
+
       return gal_min;
 
+  # ─────────────────────────────────────────────────────────────
+  # Total Cumulative Volume (gallons) - Never resets
+  # ─────────────────────────────────────────────────────────────
   - platform: integration
     sensor: water_flow_rate
     name: "Total Water Volume"
     unit_of_measurement: "gal"
     icon: "mdi:counter"
     time_unit: min
-    restore: true
+    restore: true                    # Survives restarts
 
+  # ─────────────────────────────────────────────────────────────
+  # Daily Water Usage (resets automatically at midnight)
+  # ─────────────────────────────────────────────────────────────
   - platform: total_daily_energy
     name: "Daily Water Usage"
     power_id: water_flow_rate
@@ -78,3 +95,10 @@ sensor:
     restore: true
     filters:
       - multiply: 1.0
+
+# Optional: Binary sensor for "water is flowing"
+binary_sensor:
+  - platform: template
+    name: "Water Flowing"
+    device_class: running
+    lambda: return id(water_flow_rate).state > 0.08;  # Threshold for very low flow
