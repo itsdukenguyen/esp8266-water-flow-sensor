@@ -18,7 +18,7 @@
 - High flow warning
 - Daily usage summary (9 PM)
 - Real-world 5-gallon bucket calibration
-- Fully local, encrypted, OTA updates
+- Fully local, encrypted API, OTA updates
 
 ## Hardware
 See [`BOM.md`](BOM.md) for full bill of materials and pricing.
@@ -31,6 +31,7 @@ See [`BOM.md`](BOM.md) for full bill of materials and pricing.
 
 ## Wiring Diagram
 
+```mermaid
 graph TD
     subgraph "Water Flow"
         PipeIn[Water Inlet] --> Sensor["G1\" Brass Flow Sensor"]
@@ -47,11 +48,3 @@ graph TD
 
     style Sensor fill:#4ade80,stroke:#166534,stroke-width:2px
     style ESP fill:#60a5fa,stroke:#1e40af,stroke-width:2px
-
-## Documentation
-- [`docs/calibration-log.md`](docs/calibration-log.md) — Test results & formula
-- [`docs/automations.md`](docs/automations.md) — All automations
-- [`water-flow-sensor.yaml`](water-flow-sensor.yaml) — Commented config
-
-## License
-[MIT License](LICENSE) © 2026 Duc Nguyen
