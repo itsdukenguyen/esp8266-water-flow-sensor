@@ -2,9 +2,9 @@
 
 **Part of the ESP8266 Water Flow Sensor Project**
 
-## Active Automations in This System
+## Active Water Flow Automations
 
-### Water Leak Alert When Away
+### 1. Water Leak Alert When Away (Live)
 
 ```yaml
 - id: water_leak_alert_duc_away
@@ -28,17 +28,6 @@
   mode: single
   
   
-utility_meter:
-  water_daily_usage:
-    source: sensor.water_flow_sensor_total_water_volume
-    name: Water Daily Usage
-    cycle: daily
-  water_monthly_usage:
-    source: sensor.water_flow_sensor_total_water_volume
-    name: Water Monthly Usage
-    cycle: monthly
-	
-	
 - id: water_high_flow_warning
   alias: "Water - High Flow Warning"
   description: Alert if unusually high water flow is detected (possible burst pipe or open faucet)
@@ -60,10 +49,6 @@ utility_meter:
         data:
           tag: water_high_flow
           group: water_alerts
-    - service: system_log.write
-      data:
-        message: "High water flow warning triggered: {{ states('sensor.water_flow_sensor_water_flow_rate') }} gal/min"
-        level: warning
     - service: input_boolean.turn_on
       target:
         entity_id: input_boolean.water_leak_cooldown
@@ -82,13 +67,20 @@ utility_meter:
         title: "💧 Daily Water Usage Report"
         message: >-
           You used {{ states('sensor.water_daily_usage') | round(1) }} gallons today.
-          
+
           Total usage this month: {{ states('sensor.water_monthly_usage') | round(0) }} gallons.
         data:
           tag: water_daily_summary
           group: water_reports
-    - service: system_log.write
-      data:
-        message: "Daily water usage summary sent: {{ states('sensor.water_daily_usage') }} gal"
-        level: info
   mode: single
+  
+  
+utility_meter:
+  water_daily_usage:
+    source: sensor.water_flow_sensor_total_water_volume
+    name: Water Daily Usage
+    cycle: daily
+  water_monthly_usage:
+    source: sensor.water_flow_sensor_total_water_volume
+    name: Water Monthly Usage
+    cycle: monthly

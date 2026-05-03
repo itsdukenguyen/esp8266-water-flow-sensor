@@ -1,4 +1,5 @@
 # ESP8266 G1" Water Flow Sensor for Home Assistant
+
 <p align="center">
   <img src="https://via.placeholder.com/1200x300/007ACC/FFFFFF?text=ESP8266+Water+Flow+Sensor" alt="Project Banner" width="100%" />
 </p>
@@ -10,12 +11,14 @@
 
 **Fully local DIY inline water flow meter** using a brass Hall-effect sensor. Provides accurate real-time flow rate in gal/min and tracks total + daily/monthly usage.
 
-*(Project photos will be added soon)*
+*(Real project photos coming soon)*
 
 ## Features
 - Real-time flow rate in **gal/min**
 - Cumulative total volume + automatic daily & monthly usage
-- Leak detection automation (when away)
+- Leak detection when away
+- High flow warning
+- Daily usage summary
 - Real-world calibration with 5-gallon bucket tests
 - 100% local, encrypted API, OTA updates
 
@@ -30,8 +33,8 @@ See [`BOM.md`](BOM.md) for complete bill of materials and cost breakdown.
 
 ## Documentation
 - [`docs/calibration-log.md`](docs/calibration-log.md) — Test data and formula
-- [`docs/automations.md`](docs/automations.md) — Live Home Assistant automations
-- [`water-flow-sensor.yaml`](water-flow-sensor.yaml) — Fully commented configuration
+- [`docs/automations.md`](docs/automations.md) — All Home Assistant automations
+- [`water-flow-sensor.yaml`](water-flow-sensor.yaml) — Fully commented config
 
 ## License
 [MIT License](LICENSE) © 2026 Duc Nguyen
