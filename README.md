@@ -29,6 +29,30 @@ See [`BOM.md`](BOM.md) for full bill of materials and pricing.
 3. Flash to NodeMCU ESP8266
 4. Auto-discovers in Home Assistant
 
+## Wiring Diagram
+
+```mermaid
+flowchart TD
+    subgraph "Water Pipe"
+        A[Water Inlet] --> B[G1" Brass Flow Sensor]
+        B --> C[Water Outlet]
+    end
+
+    subgraph "NodeMCU ESP8266"
+        D[5V Pin] 
+        E[GND Pin]
+        F[GPIO4 Pin]
+    end
+
+    B ---|Red Wire - VCC| D
+    B ---|Black Wire - GND| E
+    B ---|Yellow/White Wire - Signal| F
+
+    style B fill:#4ade80,stroke:#166534
+    style D fill:#60a5fa
+    style E fill:#60a5fa
+    style F fill:#60a5fa
+
 ## Documentation
 - [`docs/calibration-log.md`](docs/calibration-log.md) — Test results & formula
 - [`docs/automations.md`](docs/automations.md) — All automations
