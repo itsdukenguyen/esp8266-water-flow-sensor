@@ -1,12 +1,14 @@
 # ESPHome
 .esphome/
-secrets.yaml
 *.log
+secrets.yaml
+secrets.yaml.backup
 
-# OS
+# Build / OS
+__pycache__/
+*.pyc
 .DS_Store
 Thumbs.db
 
-# Build artifacts
-__pycache__/
-*.pyc
+# Temporary
+*.tmp

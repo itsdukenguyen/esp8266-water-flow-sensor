@@ -1,74 +1,32 @@
-\# ESP8266 + G1" Brass Hall Effect Water Flow Sensor
+# ESP8266 G1" Water Flow Sensor for Home Assistant
 
+[![ESPHome](https://img.shields.io/badge/ESPHome-2026.1.4-007ACC.svg)](https://esphome.io)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025.1+-41B1E5.svg)](https://www.home-assistant.io)
 
+**DIY inline water flow meter** using a brass Hall-effect sensor. Fully local, privacy-focused, and accurate after calibration.
 
-DIY water flow meter integrated with \*\*Home Assistant\*\* via \*\*ESPHome\*\*. Monitors flow rate (gal/min) and total volume (gallons) with full local control.
+![Installed Sensor](assets/screenshots/installed.jpg)
+![HA Dashboard](assets/screenshots/dashboard.png)
 
+## Features
+- Real-time flow rate (`gal/min`)
+- Total volume + Daily usage tracking
+- Ready for leak detection automations
+- Pulse metering with calibrated conversion
+- OTA updates & encrypted API
 
+## Hardware
+See [`BOM.md`](BOM.md)
 
-!\[Water Flow Sensor Installed](images/installed.jpg)
+## Installation
+1. Copy `water-flow-sensor.yaml` into ESPHome
+2. Edit WiFi & API secrets
+3. Flash to NodeMCU
+4. Add to Home Assistant (auto-discovered)
 
-!\[Wiring](images/wiring.jpg)
+## Calibration
+Tested with 5-gallon bucket. Formula:  
+`Q (L/min) = (Hz + 4) / 8` → converted to gallons.
 
-
-
-\## Features
-
-\- Real-time flow rate in gallons per minute
-
-\- Cumulative and daily water usage
-
-\- Leak detection ready (via HA automations)
-
-\- Fully local, privacy-focused, no cloud
-
-\- Calibrated for real-world accuracy
-
-
-
-\## Hardware
-
-\- \*\*MCU\*\*: NodeMCU ESP8266 (nodemcuv2)
-
-\- \*\*Sensor\*\*: G1" Male Thread Brass Hall Effect Water Flow Sensor (2-50 L/min)
-
-\- \*\*Adapters\*\*: Cascada 1" G to NPT + Sharkbite MNPT
-
-\- \*\*Pin\*\*: GPIO4 (with internal pull-up)
-
-
-
-\## Calibration
-
-Tested with 5-gallon bucket. Final formula used:  
-
-\*\*Q (L/min) = (Hz + 4) / 8\*\* → converted to gal/min.
-
-
-
-\## Getting Started
-
-1\. Clone this repo
-
-2\. Copy `water-flow-sensor.yaml` into ESPHome
-
-3\. Flash to your NodeMCU
-
-4\. Add to Home Assistant (auto-discovered)
-
-
-
-\## Files
-
-\- `water-flow-sensor.yaml` — Complete ESPHome configuration
-
-\- `BOM.md` — Bill of Materials
-
-\- `docs/` — Additional notes \& automations
-
-
-
-\## License
-
-MIT - feel free to use and modify!
-
+## Repository Structure
