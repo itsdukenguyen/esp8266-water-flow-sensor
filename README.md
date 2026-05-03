@@ -31,27 +31,22 @@ See [`BOM.md`](BOM.md) for full bill of materials and pricing.
 
 ## Wiring Diagram
 
-```mermaid
-flowchart TD
-    subgraph "Water Pipe"
-        A[Water Inlet] --> B[G1" Brass Flow Sensor]
-        B --> C[Water Outlet]
+graph TD
+    subgraph "Water Flow"
+        PipeIn[Water Inlet] --> Sensor["G1\" Brass Flow Sensor"]
+        Sensor --> PipeOut[Water Outlet]
     end
 
     subgraph "NodeMCU ESP8266"
-        D[5V Pin] 
-        E[GND Pin]
-        F[GPIO4 Pin]
+        ESP[NodeMCU<br>ESP8266]
     end
 
-    B ---|Red Wire - VCC| D
-    B ---|Black Wire - GND| E
-    B ---|Yellow/White Wire - Signal| F
+    Sensor -->|"Red<br>VCC"| ESP
+    Sensor -->|"Black<br>GND"| ESP
+    Sensor -->|"Yellow/White<br>Signal"| ESP
 
-    style B fill:#4ade80,stroke:#166534
-    style D fill:#60a5fa
-    style E fill:#60a5fa
-    style F fill:#60a5fa
+    style Sensor fill:#4ade80,stroke:#166534,stroke-width:2px
+    style ESP fill:#60a5fa,stroke:#1e40af,stroke-width:2px
 
 ## Documentation
 - [`docs/calibration-log.md`](docs/calibration-log.md) — Test results & formula
