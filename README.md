@@ -1,7 +1,7 @@
 # ESP8266 G1" Water Flow Sensor for Home Assistant
 
 <p align="center">
-  <img src="assets/banner.png" alt="ESP8266 Water Flow Sensor" width="100%" />
+  <img src="assets/banner.jpg" alt="ESP8266 Water Flow Sensor" width="100%" />
 </p>
 
 [![ESPHome](https://img.shields.io/badge/ESPHome-2026.1.4-007ACC.svg)](https://esphome.io)
