@@ -94,4 +94,5 @@ MIT License © 2026 Duc Nguyen
 ---
 
 Star this repo if it helped you monitor your water usage! 🌊
+
 Last updated: May 2026
