@@ -8,31 +8,80 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/Platform-ESP8266-000000.svg)](https://www.espressif.com)
 [![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2025+-41B1E5.svg)](https://www.home-assistant.io)
+[![GitHub Stars](https://img.shields.io/github/stars/itsdukenguyen/esp8266-water-flow-sensor.svg)](https://github.com/itsdukenguyen/esp8266-water-flow-sensor/stargazers)
 
-**Fully local DIY inline water flow meter** using a brass Hall-effect sensor. Accurate real-time flow in gallons per minute with total, daily, and monthly tracking.
+**Fully local DIY inline water flow meter** using a brass Hall-effect sensor.  
+Accurate real-time flow in gallons per minute with total, daily, and monthly tracking.
 
-## Features
-- Real-time flow rate (**gal/min**)
-- Cumulative + automatic daily/monthly usage
-- Leak detection when away
-- High flow warning
-- Daily usage summary (9 PM)
+---
+
+## ✨ Features
+
+- Real-time flow rate (**GPM**)
+- Cumulative total + automatic daily & monthly usage
+- Leak detection (when away from home)
+- High-flow warning notifications
+- Daily usage summary at 9 PM
 - Real-world 5-gallon bucket calibration
-- Fully local, encrypted API, OTA updates
+- Fully local, encrypted MQTT, OTA updates via ESPHome
 
-## Hardware
-See [`BOM.md`](BOM.md) for full bill of materials and pricing.
+---
 
-## Quick Start
+## 🛠️ Hardware
+
+See [`BOM.md`](BOM.md) for the complete bill of materials and current pricing (≈ $35–45).
+
+**Main Components:**
+- NodeMCU ESP8266
+- G1" Brass Hall-effect flow sensor
+- Optional: HiLetgo DHT22 temperature/humidity sensor
+
+---
+
+## 🚀 Quick Start (One-command possible)
+
 1. Copy `water-flow-sensor.yaml` into ESPHome
-2. Update WiFi secrets
-3. Flash to NodeMCU ESP8266
-4. Auto-discovers in Home Assistant
+2. Update your WiFi credentials in `secrets.yaml`
+3. Flash to your NodeMCU
+4. The device will auto-discover in Home Assistant
 
-## Documentation
-- [`docs/calibration-log.md`](docs/calibration-log.md) — Test results & formula
-- [`docs/automations.md`](docs/automations.md) — All automations
-- [`water-flow-sensor.yaml`](water-flow-sensor.yaml) — Fully commented configuration
+```bash
+# Using ESPHome CLI (optional)
+esphome run water-flow-sensor.yaml
+```
 
-## License
-[MIT License](LICENSE) © 2026 Duc Nguyen
+---
+
+## 📸 Screenshots
+
+<img src="assets/screenshot-flow.png" alt="Flow Sensor Dashboard" width="49%">
+<img src="assets/automations.png" alt="Home Assistant Automations" width="49%">
+
+---
+
+## 📖 Full Documentation
+
+SectionDescriptionBOM.mdParts list + linkswater-flow-sensor.yamlFully commented ESPHome configdocs/calibration-log.mdReal test data & calibrationdocs/automations.mdAll automations explained
+
+---
+
+## 🧪 Calibration & Accuracy
+
+- Tested multiple times with a 5-gallon bucket.
+- Full results and the calibration formula are in `docs/calibration-log.md`.
+
+---
+
+## 📝 Changelog
+
+- Feel free to open issues or submit PRs!
+- See CONTRIBUTING.md for guidelines.
+
+---
+
+## 📄 License
+
+MIT License © 2026 Duc Nguyen
+
+Star this repo if it helped you monitor your water usage! 🌊
+Last updated: May 2026
