@@ -61,7 +61,10 @@ esphome run water-flow-sensor.yaml
 
 ## 📖 Full Documentation
 
-SectionDescriptionBOM.mdParts list + linkswater-flow-sensor.yamlFully commented ESPHome configdocs/calibration-log.mdReal test data & calibrationdocs/automations.mdAll automations explained
+- `BOM.md` — Parts list + links
+- `water-flow-sensor.yaml` — Fully commented ESPHome config
+- `docs/calibration-log.md` — Real test data & calibration formula
+- `docs/automations.md` — All Home Assistant automations
 
 ---
 
@@ -74,14 +77,21 @@ SectionDescriptionBOM.mdParts list + linkswater-flow-sensor.yamlFully commented 
 
 ## 📝 Changelog
 
-- Feel free to open issues or submit PRs!
-- See CONTRIBUTING.md for guidelines.
+- See CHANGELOG.md
+
+---
+
+## 🤝 Contributing
+
+Contributions and ideas are welcome! See CONTRIBUTING.md
 
 ---
 
 ## 📄 License
 
 MIT License © 2026 Duc Nguyen
+
+---
 
 Star this repo if it helped you monitor your water usage! 🌊
 Last updated: May 2026
